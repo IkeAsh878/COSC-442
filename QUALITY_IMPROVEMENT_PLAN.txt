@@ -19,4 +19,4 @@ Justification:
 - High complexity areas
 - Core gameplay importance
 - Frequent execution (production, map lookup)
-- Good candidate for testing
+- Good candidate for testings
