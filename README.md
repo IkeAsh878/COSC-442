@@ -1,4 +1,4 @@
-<em><i> COSC 442 Final Project – FreeCol Quality & Feature Work <i></em>
+<em> COSC 442 Final Project – FreeCol Quality & Feature Work </em>
 
 Members:
 - Luke Rosendorf 
@@ -8,7 +8,7 @@ Members:
 
 Project Overview
 
-This repository contains a fork of **FreeCol 0.11.6** adapted for the COSC 442 final project.
+<em>This repository contains a fork of **FreeCol 0.11.6** adapted for the COSC 442 final project.</em>
 Our goals:
 
 1. Improve software quality (testing, documentation, static analysis, refactoring).
