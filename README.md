@@ -2,9 +2,9 @@ COSC 442 Final Project – FreeCol Quality & Feature Work
 
 Members:
 - Luke Rosendorf 
-- 
-- 
-- 
+- Ikechukwu Ashiogwu
+- Antikot Gemtessa
+- Michael A
 
 Project Overview
 
