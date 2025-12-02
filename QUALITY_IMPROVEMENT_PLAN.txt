@@ -1,0 +1,22 @@
+Quality Improvement Plan for FreeCol
+
+Target Areas:
+1. Colony subsystem – population, growth, production
+2. Goods subsystem – goods amounts, production amounts
+3. Market subsystem – buying/selling price changes
+4. Map coordinate system – coordinate validation
+5. Game turn system – for new Seasonal Weather feature
+6. SeasonManager feature – ensure clean design and testability
+
+Improvement Types:
+- Unit tests
+- Integration tests
+- Refactoring
+- Javadocs
+- Static analysis (SonarLint, CheckStyle)
+
+Justification:
+- High complexity areas
+- Core gameplay importance
+- Frequent execution (production, map lookup)
+- Good candidate for testing
