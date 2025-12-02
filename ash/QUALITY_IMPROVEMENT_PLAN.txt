@@ -1,0 +1,20 @@
+Quality Improvement Plan for FreeCol
+
+Target Areas:
+1. Colony subsystem – food, growth, and production checks
+2. Goods subsystem – production amounts and consumption logic
+3. Market subsystem – price update calculations
+4. Map subsystem – tile visibility and seasonal changes
+5. SeasonManager feature – seasonal effects on production
+
+Improvement Types:
+- Add unit tests
+- Add integration tests
+- Fix static analysis issues (SonarLint, CheckStyle)
+- Refactor high-complexity methods
+- Improve Javadocs where missing
+
+Justification:
+- These systems run every turn and can cause major gameplay issues
+- Seasonal effects require stable production and visibility logic
+- Good candidates for testing, refactoring, and documentation improvements
