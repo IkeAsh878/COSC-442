@@ -1,0 +1,21 @@
+Testing & QA Plan
+
+Unit Tests to Add:
+- ColonyGrowthTest
+- GoodsProductionTest
+- SeasonManagerTest
+
+Integration Tests:
+- Seasonal production affects Colony production
+- Market price change behavior
+
+Tools:
+1. SonarLint – fix Critical + Major issues in:
+   - Colony.java
+   - Market.java
+   - Map.java
+
+2. CheckStyle – enforce style corrections
+
+Test Coverage Goals:
+- 70%+ on targeted classes
