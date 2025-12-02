@@ -4,7 +4,7 @@ Members:
 - Luke Rosendorf 
 - Ikechukwu Ashiogwu
 - Antikot Gemtessa
-- Michael A
+- Michael Asubonteen
 
 Project Overview
 
