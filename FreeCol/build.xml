@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+
+<project name="FreeCol" default="run">
+
+    <!-- Use Eclipse's default JRE -->
+    <property name="java.target.version" value="11"/>
+    <property name="test" value="AllTests"/>
+
+    <!-- Project paths -->
+    <property name="freecol.src.dir" value="${basedir}/src"/>
+    <property name="freecol.test.dir" value="${basedir}/test/src"/>
+    <property name="freecol.build.dir" value="${basedir}/build"/>
+    <property name="freecol.jar.file" value="${basedir}/FreeCol.jar"/>
+    <property name="freecol.manifest" value="${basedir}/src/MANIFEST.MF"/>
+
+    <!-- Classpaths -->
+    <path id="libraries.classpath">
+        <fileset dir="${basedir}/jars" includes="**/*.jar"/>
+    </path>
+
+    <path id="test.classpath">
+        <path refid="libraries.classpath"/>
+        <pathelement path="${freecol.build.dir}"/>
+        <fileset dir="${basedir}/test/lib" includes="junit*.jar"/>
+    </path>
+
+    <path id="test.build.classpath">
+        <path refid="test.classpath"/>
+    </path>
+
+    <!-- Init / clean -->
+    <target name="init">
+        <mkdir dir="${freecol.build.dir}"/>
+    </target>
+
+    <target name="clean" description="Remove generated files.">
+        <delete dir="${freecol.build.dir}" quiet="true"/>
+        <delete file="${freecol.jar.file}" quiet="true"/>
+        <delete file="${freecol.manifest}" quiet="true"/>
+    </target>
+
+    <!-- Compile main sources (use release to avoid module-path warning) -->
+    <target name="compile" depends="init" description="Compile main source code.">
+        <javac srcdir="${freecol.src.dir}"
+               destdir="${freecol.build.dir}"
+               classpathref="libraries.classpath"
+               debug="on"
+               includeantruntime="false"
+               fork="true"
+               executable="${java.home}/bin/javac">
+            <compilerarg value="--release"/>
+            <compilerarg value="${java.target.version}"/>
+            <compilerarg value="-Xlint:unchecked"/>
+            <compilerarg value="-Xlint:deprecation"/>
+        </javac>
+    </target>
+
+    <!-- Copy non-code resources -->
+    <target name="build" depends="compile">
+        <copy todir="${freecol.build.dir}">
+            <fileset dir="${freecol.src.dir}" includes="**/*.xml"/>
+        </copy>
+    </target>
+
+    <!-- Manifest with relative Class-Path -->
+    <target name="manifest" depends="build" description="Generate MANIFEST.MF safely.">
+        <delete file="${freecol.manifest}" quiet="true"/>
+        <pathconvert property="manifest.classpath" pathsep=" ">
+            <path refid="libraries.classpath"/>
+            <map from="${basedir}/" to=""/>
+        </pathconvert>
+        <manifest file="${freecol.manifest}">
+            <attribute name="Main-Class" value="net.sf.freecol.FreeCol"/>
+            <attribute name="Class-Path" value="${manifest.classpath}"/>
+        </manifest>
+    </target>
+
+    <!-- Package -->
+    <target name="package" depends="manifest" description="Package application jar.">
+        <jar jarfile="${freecol.jar.file}"
+             basedir="${freecol.build.dir}"
+             manifest="${freecol.manifest}"
+             includes="net/**, splash.jpg"/>
+    </target>
+
+    <!-- ===================== TESTING ===================== -->
+
+    <!-- Compile tests -->
+    <target name="compile-test" depends="compile" description="Compile unit tests.">
+        <javac srcdir="${freecol.test.dir}"
+               destdir="${freecol.build.dir}"
+               classpathref="test.build.classpath"
+               debug="on"
+               includeantruntime="false"
+               fork="true"
+               executable="${java.home}/bin/javac">
+            <compilerarg value="--release"/>
+            <compilerarg value="${java.target.version}"/>
+            <compilerarg value="-Xlint:unchecked"/>
+            <compilerarg value="-Xlint:deprecation"/>
+        </javac>
+    </target>
+
+    <!-- Run a specific test suite/class (default: AllTests) -->
+    <target name="test" depends="compile-test" description="Run a specific test class or suite.">
+        <mkdir dir="${freecol.build.dir}/reports"/>
+        <junit printsummary="on" fork="true" haltonfailure="yes" haltonerror="yes"
+               jvm="${java.home}/bin/java">
+            <classpath refid="test.classpath"/>
+            <formatter type="plain"/>
+            <test todir="${freecol.build.dir}/reports" name="net.sf.freecol.${test}"/>
+            <sysproperty key="java.awt.headless" value="true"/>
+        </junit>
+    </target>
+
+
+    <!-- =================================================== -->
+
+    <!-- Run FreeCol using Eclipse's JRE -->
+    <target name="run" depends="package" description="Run FreeCol.">
+        <java jar="${freecol.jar.file}" fork="true" failonerror="true"
+              jvm="${java.home}/bin/java">
+            <jvmarg value="-Xmx512M"/>
+        </java>
+    </target>
+
+</project>
