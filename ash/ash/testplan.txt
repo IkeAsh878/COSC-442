@@ -1,21 +1,42 @@
-Testing & QA Plan
+Testing & QA Plan for FreeCol
+
+Test Objectives:
+The goal of this testing plan is to improve the correctness, stability, and reliability of key game systems in FreeCol. Testing will focus on subsystems that run every turn, including Colony production, Goods calculations, Market pricing, and seasonal changes. The objective is to detect logic errors early, verify expected behavior across multiple game states, and ensure new features such as seasonal effects integrate correctly.
 
 Unit Tests to Add:
-- ColonyGrowthTest
-- GoodsProductionTest
-- SeasonManagerTest
+1. ColonyGrowthTest – verifies colony food usage, population growth, starvation conditions, and food overflow behavior.
+2. GoodsProductionTest – checks correct production and consumption of goods, including conversions, storage limits, and type-specific behavior.
+3. SeasonManagerTest – ensures season transitions occur correctly, seasonal modifiers apply accurately, and no invalid season states occur.
 
 Integration Tests:
-- Seasonal production affects Colony production
-- Market price change behavior
+1. Seasonal Production Integration Test – verifies that seasonal modifiers correctly affect Colony production, Map tile yields, and Goods output when turns progress.
+2. Market Price Change Integration Test – tests that Market prices adjust correctly after repeated buying and selling, ensuring supply-demand logic works across turns.
 
-Tools:
-1. SonarLint – fix Critical + Major issues in:
-   - Colony.java
-   - Market.java
-   - Map.java
+Static Analysis Tools:
+1. SonarLint
+   - Resolve all Critical and Major issues in:
+     * Colony.java
+     * Market.java
+     * Map.java
+   - Focus on potential null pointer issues, duplicated code, complexity warnings, and unstable conditions.
 
-2. CheckStyle – enforce style corrections
+2. CheckStyle
+   - Enforce consistent formatting across modified files.
+   - Ensure naming, spacing, and brace rules match project standards.
+   - Reduce style-related merge conflicts among group members.
+
+Refactoring Goals:
+- Simplify high-complexity methods in Colony and Market classes to make them easier to test.
+- Remove duplicated logic in Colony production warnings and Market price update rules.
+- Improve method readability and maintainability where static-analysis flags appear.
 
 Test Coverage Goals:
-- 70%+ on targeted classes
+- Achieve at least 70% coverage on targeted classes:
+  * Colony.java
+  * GoodsContainer.java
+  * SeasonManager.java
+  * Market.java
+- Focus coverage on logic-heavy methods such as production calculations, price changes, and season transitions.
+
+Overall Plan Summary:
+This QA plan ensures that the most critical FreeCol subsystems receive thorough unit and integration testing supported by refactoring and static analysis improvements. The combination of test expansion, tool-based cleanup, and coverage tracking strengthens the reliability of the Colony, Goods, Market, and seasonal systems. Completing this plan will provide confidence that new features and quality updates behave correctly under real gameplay conditions.
