@@ -1,42 +1,44 @@
-Testing & QA Plan for FreeCol
+Task 4 – Software Quality Assurance Plan
 
-Test Objectives:
-The goal of this testing plan is to improve the correctness, stability, and reliability of key game systems in FreeCol. Testing will focus on subsystems that run every turn, including Colony production, Goods calculations, Market pricing, and seasonal changes. The objective is to detect logic errors early, verify expected behavior across multiple game states, and ensure new features such as seasonal effects integrate correctly.
+Overview:
+FreeCol is a complex software system, and improving its quality requires structured planning, prioritization, and documentation. This QA plan outlines the tests, tools, and activities our group will perform to improve the core systems identified in Task 3. All planned improvements and assignments are documented in the GitHub Issue Tracker, including the rationale for each task, responsible group member, and expected outcome. This plan also describes the integration of static analysis, refactoring tasks, and testing goals to ensure measurable progress throughout the project.
 
-Unit Tests to Add:
-1. ColonyGrowthTest – verifies colony food usage, population growth, starvation conditions, and food overflow behavior.
-2. GoodsProductionTest – checks correct production and consumption of goods, including conversions, storage limits, and type-specific behavior.
-3. SeasonManagerTest – ensures season transitions occur correctly, seasonal modifiers apply accurately, and no invalid season states occur.
+Unit Tests to Develop:
+1. ColonyGrowthTest – test colony food consumption, growth, and starvation.
+2. GoodsProductionTest – validate goods production, consumption, and overflow.
+3. SeasonManagerTest – verify correct season transitions and seasonal modifiers.
 
 Integration Tests:
-1. Seasonal Production Integration Test – verifies that seasonal modifiers correctly affect Colony production, Map tile yields, and Goods output when turns progress.
-2. Market Price Change Integration Test – tests that Market prices adjust correctly after repeated buying and selling, ensuring supply-demand logic works across turns.
+1. Seasonal Production Integration – confirm seasonal effects impact colony production as expected.
+2. Market Price Behavior Integration – test price fluctuation based on repeated buying/selling.
 
-Static Analysis Tools:
-1. SonarLint
-   - Resolve all Critical and Major issues in:
-     * Colony.java
-     * Market.java
-     * Map.java
-   - Focus on potential null pointer issues, duplicated code, complexity warnings, and unstable conditions.
+Static Analysis and Style Tools:
+1. SonarLint – resolve Critical and Major issues in Colony.java, Market.java, and Map.java.
+2. CheckStyle – enforce consistent formatting across modified files.
 
-2. CheckStyle
-   - Enforce consistent formatting across modified files.
-   - Ensure naming, spacing, and brace rules match project standards.
-   - Reduce style-related merge conflicts among group members.
+Refactoring Tasks:
+- Simplify complex Colony production methods.
+- Remove duplicated logic in production warnings.
+- Improve maintainability of SeasonManager and Market subsystems.
 
-Refactoring Goals:
-- Simplify high-complexity methods in Colony and Market classes to make them easier to test.
-- Remove duplicated logic in Colony production warnings and Market price update rules.
-- Improve method readability and maintainability where static-analysis flags appear.
+Coverage Goals:
+- Achieve 70%+ test coverage on Colony, GoodsContainer, SeasonManager, and Market classes.
 
-Test Coverage Goals:
-- Achieve at least 70% coverage on targeted classes:
-  * Colony.java
-  * GoodsContainer.java
-  * SeasonManager.java
-  * Market.java
-- Focus coverage on logic-heavy methods such as production calculations, price changes, and season transitions.
+Issue Tracker Documentation:
+All improvements from Task 3 (20 total) are entered as GitHub Issues. Each issue contains:
+- A clear title describing the improvement
+- Description and rationale
+- Priority level (High, Medium, Low)
+- Assigned group member
+- Link to relevant classes or code areas
+- Expected deliverables (tests, refactoring, documentation)
 
-Overall Plan Summary:
-This QA plan ensures that the most critical FreeCol subsystems receive thorough unit and integration testing supported by refactoring and static analysis improvements. The combination of test expansion, tool-based cleanup, and coverage tracking strengthens the reliability of the Colony, Goods, Market, and seasonal systems. Completing this plan will provide confidence that new features and quality updates behave correctly under real gameplay conditions.
+Additionally, a Feature Request Issue has been created for Task 6 to document and track the new game feature. This issue includes a description of the feature, task breakdown, comments, and progress updates.
+
+Sprint Progress Reporting:
+As required, two project updates (11/15 and 11/29) will be delivered summarizing:
+1. Repository and Issue Tracker links
+2. Completed work and contributors
+3. Planned next steps
+4. Any blockers
+
