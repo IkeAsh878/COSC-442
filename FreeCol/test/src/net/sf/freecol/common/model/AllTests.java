@@ -68,6 +68,8 @@ public class AllTests {
         suite.addTestSuite(UnitTest.class);
         suite.addTestSuite(UnitTypeChangeTest.class);
         suite.addTestSuite(SeasonManagerTest.class);
+        suite.addTestSuite(WinterWarningManagerTest.class);
+
 
         //$JUnit-END$
         return suite;
