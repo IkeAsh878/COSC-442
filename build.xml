@@ -1,0 +1,42 @@
+<project name="cosc442project" default="test" basedir=".">
+
+    <property name="src.dir" value="src"/>
+    <property name="test.dir" value="test"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="testclasses.dir" value="${build.dir}/test-classes"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac destdir="${classes.dir}" includeantruntime="false">
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+
+    <target name="compile-tests" depends="compile">
+        <mkdir dir="${testclasses.dir}"/>
+        <javac destdir="${testclasses.dir}" includeantruntime="false">
+            <src path="${test.dir}"/>
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="test" depends="compile-tests">
+        <junit printsummary="yes">
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+                <pathelement path="${testclasses.dir}"/>
+            </classpath>
+            <batchtest>
+                <fileset dir="${test.dir}" includes="**/*Test.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
+</project>

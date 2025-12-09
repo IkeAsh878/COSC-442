@@ -1,21 +1,35 @@
-Testing & QA Plan
+Testing and QA Plan for FreeCol
+
+Test Goals:
+- Increase confidence in key gameplay systems.
+- Reduce the likelihood of regressions in production, growth, and trade.
+- Ensure the new Seasonal Weather feature behaves correctly.
 
 Unit Tests to Add:
-- ColonyGrowthTest
-- GoodsProductionTest
-- SeasonManagerTest
+- ColonyGrowthTest: verify that colony population does not become negative and reacts to food levels.
+- GoodsProductionTest: verify that goods, especially food, do not drop unexpectedly when producing.
+- SeasonManagerTest: verify season cycling and production multipliers.
 
-Integration Tests:
-- Seasonal production affects Colony production
-- Market price change behavior
+Integration Tests to Add:
+- Seasonal production: confirm that the season multiplier changes how much a colony produces each turn.
+- Market price behavior: confirm that repeated buying and selling changes prices in a predictable way.
+- Save/load cycle: confirm that saving and loading keeps game state consistent (planned).
 
 Tools:
-1. SonarLint – fix Critical + Major issues in:
-   - Colony.java
-   - Market.java
-   - Map.java
+1. SonarLint:
+   - Run on the project.
+   - Fix all Critical and Major issues in:
+     - Colony.java
+     - Market.java
+     - Map.java
 
-2. CheckStyle – enforce style corrections
+2. CheckStyle:
+   - Apply a standard Java style.
+   - Fix issues related to spacing, naming, unused imports, and formatting.
 
-Test Coverage Goals:
-- 70%+ on targeted classes
+Coverage Targets:
+- Aim for at least 70% line coverage in selected classes:
+  - Colony
+  - Market
+  - SeasonManager
+- Ensure all new feature code and new tests run without failures.

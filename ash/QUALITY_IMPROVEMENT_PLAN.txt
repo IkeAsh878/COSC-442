@@ -1,20 +1,53 @@
 Quality Improvement Plan for FreeCol
 
 Target Areas:
-1. Colony subsystem – food, growth, and production checks
+1. Colony subsystem – food, growth, and production accuracy
 2. Goods subsystem – production amounts and consumption logic
-3. Market subsystem – price update calculations
-4. Map subsystem – tile visibility and seasonal changes
-5. SeasonManager feature – seasonal effects on production
+3. Market subsystem – buying/selling price changes
+4. Map subsystem – tile visibility, terrain behavior, seasonal updates
+5. SeasonManager feature – seasonal effects on production and tile output
 
 Improvement Types:
-- Add unit tests
-- Add integration tests
-- Fix static analysis issues (SonarLint, CheckStyle)
-- Refactor high-complexity methods
-- Improve Javadocs where missing
+- Unit tests
+- Integration tests
+- Refactoring of complex methods
+- Javadoc improvements
+- Static analysis fixes (SonarLint, CheckStyle)
 
 Justification:
-- These systems run every turn and can cause major gameplay issues
-- Seasonal effects require stable production and visibility logic
-- Good candidates for testing, refactoring, and documentation improvements
+- These systems run every turn and directly impact gameplay
+- High-complexity areas increase the chance of bugs
+- Production, goods, and market logic affect every colony each turn
+- Seasonal effects require stable map and production subsystems
+- These components are strong candidates for targeted testing and refactoring
+
+Paragraph Explanation:
+FreeCol is a large software project with more than one hundred thousand lines of code, so it is not possible to test or improve every component within our project timeline. For this reason, our group focused on prioritizing the subsystems that have the greatest impact on gameplay, complexity, and overall stability. We selected the Colony, Goods, Market, Map, and SeasonManager components because they run every turn, contain complicated logic, and influence core mechanics such as production, population growth, pricing, and seasonal changes. Using factors such as frequency of use, code complexity, and static-analysis warnings, we identified twenty specific improvements involving new unit tests, integration tests, refactoring, documentation, and SonarLint/CheckStyle cleanup. Prioritizing these areas ensures that our quality assurance efforts are targeted, justified, and focused on strengthening the most critical parts of FreeCol.
+
+PRIORITIZED QUALITY IMPROVEMENTS (20 Required)
+
+High Priority:
+1. Add unit tests for Colony food and starvation logic.
+2. Add unit tests for Colony liberty (SoL) calculations.
+3. Add unit tests for Colony net production calculations.
+4. Add unit tests for GoodsContainer add/remove behavior.
+5. Add integration test for seasonal effects on colony production.
+6. Add integration test for market price changes after repeated trades.
+7. Fix SonarLint critical issues in Colony.java.
+8. Fix SonarLint critical issues in Market.java.
+9. Refactor complex Colony production methods.
+10. Improve Javadocs for Colony and SeasonManager methods.
+
+Medium Priority:
+11. Add unit tests for SeasonManager season transitions.
+12. Add unit tests for Map tile visibility logic.
+13. Add integration tests for colony export/import interactions.
+14. Fix SonarLint major issues in Map and Tile classes.
+15. Apply CheckStyle formatting to Colony and Market packages.
+16. Refactor duplicated production warning logic in Colony.
+
+Low Priority:
+17. Add unit tests for GoodsType breeding logic (e.g., horses).
+18. Add unit tests for ExportData import/export thresholds.
+19. Improve Javadocs for Market price calculation formulas.
+20. Add a smoke test to run several turns of a small game and verify stability.

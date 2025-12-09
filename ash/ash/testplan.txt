@@ -1,21 +1,44 @@
-Testing & QA Plan
+Task 4 – Software Quality Assurance Plan
 
-Unit Tests to Add:
-- ColonyGrowthTest
-- GoodsProductionTest
-- SeasonManagerTest
+Overview:
+FreeCol is a complex software system, and improving its quality requires structured planning, prioritization, and documentation. This QA plan outlines the tests, tools, and activities our group will perform to improve the core systems identified in Task 3. All planned improvements and assignments are documented in the GitHub Issue Tracker, including the rationale for each task, responsible group member, and expected outcome. This plan also describes the integration of static analysis, refactoring tasks, and testing goals to ensure measurable progress throughout the project.
+
+Unit Tests to Develop:
+1. ColonyGrowthTest – test colony food consumption, growth, and starvation.
+2. GoodsProductionTest – validate goods production, consumption, and overflow.
+3. SeasonManagerTest – verify correct season transitions and seasonal modifiers.
 
 Integration Tests:
-- Seasonal production affects Colony production
-- Market price change behavior
+1. Seasonal Production Integration – confirm seasonal effects impact colony production as expected.
+2. Market Price Behavior Integration – test price fluctuation based on repeated buying/selling.
 
-Tools:
-1. SonarLint – fix Critical + Major issues in:
-   - Colony.java
-   - Market.java
-   - Map.java
+Static Analysis and Style Tools:
+1. SonarLint – resolve Critical and Major issues in Colony.java, Market.java, and Map.java.
+2. CheckStyle – enforce consistent formatting across modified files.
 
-2. CheckStyle – enforce style corrections
+Refactoring Tasks:
+- Simplify complex Colony production methods.
+- Remove duplicated logic in production warnings.
+- Improve maintainability of SeasonManager and Market subsystems.
 
-Test Coverage Goals:
-- 70%+ on targeted classes
+Coverage Goals:
+- Achieve 70%+ test coverage on Colony, GoodsContainer, SeasonManager, and Market classes.
+
+Issue Tracker Documentation:
+All improvements from Task 3 (20 total) are entered as GitHub Issues. Each issue contains:
+- A clear title describing the improvement
+- Description and rationale
+- Priority level (High, Medium, Low)
+- Assigned group member
+- Link to relevant classes or code areas
+- Expected deliverables (tests, refactoring, documentation)
+
+Additionally, a Feature Request Issue has been created for Task 6 to document and track the new game feature. This issue includes a description of the feature, task breakdown, comments, and progress updates.
+
+Sprint Progress Reporting:
+As required, two project updates (11/15 and 11/29) will be delivered summarizing:
+1. Repository and Issue Tracker links
+2. Completed work and contributors
+3. Planned next steps
+4. Any blockers
+
