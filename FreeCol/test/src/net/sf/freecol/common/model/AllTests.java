@@ -27,7 +27,9 @@ public class AllTests {
 
     public static Test suite() {
         TestSuite suite = new TestSuite("Test for net.sf.freecol.common.model");
+
         suite.addTestSuite(SpecificationTest.class);
+
         //$JUnit-BEGIN$
         suite.addTestSuite(BaseCostDeciderTest.class);
         suite.addTestSuite(BuildingTest.class);
@@ -65,6 +67,8 @@ public class AllTests {
         suite.addTestSuite(TradeRouteTest.class);
         suite.addTestSuite(UnitTest.class);
         suite.addTestSuite(UnitTypeChangeTest.class);
+        suite.addTestSuite(SeasonManagerTest.class);
+
         //$JUnit-END$
         return suite;
     }
